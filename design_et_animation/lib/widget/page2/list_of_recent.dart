@@ -1,6 +1,8 @@
-import 'package:content_placeholder/content_placeholder.dart';
+import 'package:design_et_animation/model/recipe.dart';
+import 'package:design_et_animation/widget/page2/placeholder_list.dart';
 import 'package:design_et_animation/widget/page2/recent_element.dart';
 import 'package:flutter/material.dart';
+import 'package:design_et_animation/service/recipe_bloc.dart';
 
 class ListOfRecent extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class _ListOfRecentState extends State<ListOfRecent> {
   bool _isLoading = false;
   var _listItems = <Widget>[];
   final _listKey = GlobalKey<AnimatedListState>();
+  final RecipeBloc _recipeBloc = RecipeBloc();
 
   @override
   void initState() {
@@ -33,64 +36,12 @@ class _ListOfRecentState extends State<ListOfRecent> {
     });
   }
 
-  void _loadItems(){
-    final fetchedList = [
-      RecentElement(
-        id: "1",
-        imagePath: "assets/image/recette.jpg",
-        title: "Sauce Tomate ",
-      ),
-      RecentElement(
-        id: "2",
-        imagePath: "assets/image/recette.jpg",
-        title: "Calzon",
-      ),
-      RecentElement(
-        id: "3",
-        imagePath: "assets/image/recette.jpg",
-        title: "Sauce Vinegrette ",
-      ),
-      RecentElement(
-        id: "4",
-        imagePath: "assets/image/recette.jpg",
-        title: "Sauce Bolognaise",
-      ),
-      RecentElement(
-        id: "5",
-        imagePath: "assets/image/recette.jpg",
-        title: "Pomme fruite",
-      ),
-      RecentElement(
-        id: "6",
-        imagePath: "assets/image/recette.jpg",
-        title: "Pizza 4 fromage",
-      ),
-      RecentElement(
-        id: "7",
-        imagePath: "assets/image/recette.jpg",
-        title: "Composé spécial",
-      ),
-      RecentElement(
-        id: "8",
-        imagePath: "assets/image/recette.jpg",
-        title: "Tarte au pomme",
-      ),
-      RecentElement(
-        id: "9",
-        imagePath: "assets/image/recette.jpg",
-        title: "Pizza au fromage",
-      ),
-      RecentElement(
-        id: "10",
-        imagePath: "assets/image/recette.jpg",
-        title: "Pizza margerita",
-      ),
-    ];
-    
+  List<RecentElement> fetchedList = [];
+  void _loadItems(){  
     var future = Future((){});
     for(var i = 0; i < fetchedList.length; i++){
       future = future.then((_){
-        return Future.delayed(Duration(milliseconds: 500), (){
+        return Future.delayed(Duration(milliseconds: 300), (){
           _listItems.add(fetchedList[i]);
           _listKey.currentState.insertItem(_listItems.length - 1);
         });
@@ -105,8 +56,20 @@ class _ListOfRecentState extends State<ListOfRecent> {
       children: <Widget>[
         Container(
             height: 494,
-            child: Builder(
-              builder: (BuildContext context){
+            child: StreamBuilder(
+              stream: _recipeBloc.recipeListStream,
+              builder: (BuildContext context, AsyncSnapshot<List<Recipe>> snapshot){
+                
+                if(snapshot.hasData){
+                  for(var i = 0; i < snapshot.data.length; i++){
+                    fetchedList.add(RecentElement(
+                      id: snapshot.data[i].id,
+                      title: snapshot.data[i].name,
+                      imagePath: snapshot.data[i].imagesPath,
+                    ));
+                  }
+                }
+                
                 if(!_isLoading){
                   return AnimatedList(  
                     key: _listKey,               
@@ -125,59 +88,9 @@ class _ListOfRecentState extends State<ListOfRecent> {
                 }
                 return PlaceholderList();
               }
-            ) 
+            )
         ),
       ],
     );
-  }
-}
-
-
-class PlaceholderList extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-                height: 487,
-                child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemCount: 10,
-                itemBuilder: (context, index){
-                  return Container(
-                    child: Row(
-                      children: <Widget>[
-                        ContentPlaceholder(
-                          width: 100,
-                          height: 100,
-                        ),
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 22),
-                            child: Column(
-                              children: <Widget>[
-                                ContentPlaceholder(
-                                  width: 180,
-                                  height: 20,
-                                ),
-
-                                ContentPlaceholder(
-                                    width: 180,
-                                    height: 12,
-                                  ),
-
-                                ContentPlaceholder(
-                                    width: 180,
-                                    height: 20,
-                                  ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                },
-              ) 
-            );
   }
 }

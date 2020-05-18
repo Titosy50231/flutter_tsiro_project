@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class InfoPage extends StatefulWidget {
@@ -67,7 +66,8 @@ class _InfoPageState extends State<InfoPage> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text("Slow cooker vegetable lasagne", 
-                          style: GoogleFonts.playfairDisplay(
+                          style: TextStyle(
+                            fontFamily: "PlayfairDisplay",
                             fontSize: 40,
                             fontWeight: FontWeight.w500
                           ),
@@ -164,7 +164,8 @@ class _InfoPageState extends State<InfoPage> {
 
                       Align(alignment: Alignment.centerLeft,
                         child: Text("Ingredients", 
-                          style: GoogleFonts.playfairDisplay(
+                          style: TextStyle(
+                            fontFamily: "PlayfairDisplay",
                             fontSize: 32,
                             fontWeight: FontWeight.w500
                           ),
@@ -192,7 +193,8 @@ class _InfoPageState extends State<InfoPage> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text("Directions", 
-                          style: GoogleFonts.playfairDisplay(
+                          style: TextStyle(
+                            fontFamily: "PlayfairDisplay",
                             fontSize: 32,
                             fontWeight: FontWeight.w500
                           ),
@@ -250,7 +252,8 @@ class _InfoPageState extends State<InfoPage> {
   Widget _buildDirection(String direction, int step){
     return ListTile(
       leading: Text("$step",
-        style: GoogleFonts.playfairDisplay(
+        style: TextStyle(
+          fontFamily: "PlayfairDisplay",          
           color: Colors.amber,
           fontSize: 50,
           fontWeight: FontWeight.w500

@@ -30,9 +30,6 @@ class _ProfilState extends State<Profil> {
                     height: height * 0.2,
                     child: Row(
                       children: <Widget>[
-
-
-
                         Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
@@ -50,14 +47,13 @@ class _ProfilState extends State<Profil> {
                               backgroundColor: Colors.white,
                               radius: 50,
                               child: CircleAvatar(
-                                backgroundImage: (_image == null ) ? AssetImage("assets/image/recette.jpg") : FileImage(_image),
+                                backgroundImage: (_image == null ) ? AssetImage("assets/image/recette1.jpg") : FileImage(_image),
                                 radius: 47,
                                 backgroundColor: Colors.grey[200],
                               ),
                             ),
                           ),
                         ),
-
 
                         Padding(
                           padding: const EdgeInsets.only(left: 18.0),
@@ -111,7 +107,7 @@ class _ProfilState extends State<Profil> {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text("353", 
+                                Text("0", 
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 22
@@ -134,8 +130,9 @@ class _ProfilState extends State<Profil> {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text("12K", 
+                                Text("0", 
                                   style: TextStyle(
+                                    color: Colors.grey[400],
                                     fontWeight: FontWeight.w500,
                                     fontSize: 22
                                   ),       
@@ -144,7 +141,7 @@ class _ProfilState extends State<Profil> {
 
                                 Text("Views", 
                                   style: TextStyle(
-                                    color: Colors.black45,
+                                    color: Colors.grey[400],
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16
                                   ),       
@@ -156,8 +153,9 @@ class _ProfilState extends State<Profil> {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text("1.4K", 
+                                Text("0", 
                                   style: TextStyle(
+                                    color: Colors.grey[400],
                                     fontWeight: FontWeight.w500,
                                     fontSize: 22
                                   ),       
@@ -167,7 +165,7 @@ class _ProfilState extends State<Profil> {
 
                                 Text("Followers", 
                                   style: TextStyle(
-                                    color: Colors.black45,
+                                    color: Colors.grey[400],
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16
                                   ),       

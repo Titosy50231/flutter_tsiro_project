@@ -1,6 +1,7 @@
 import 'package:content_placeholder/content_placeholder.dart';
 import 'package:design_et_animation/widget/user_profil/add_recipe.dart';
 import 'package:design_et_animation/widget/user_profil/cook_book.dart';
+import 'package:design_et_animation/widget/user_profil/placeholder_grid.dart';
 import 'package:flutter/material.dart';
 
 class MyCustomTabView extends StatefulWidget {
@@ -91,35 +92,35 @@ class _MyCustomTabViewState extends State<MyCustomTabView> {
 
         Container(
           height: 400,
-          child: Builder(
+          child: _selected ? Builder(
             builder: (context){
               var books = [
                 AddRecipe(),
-                CookBook(
-                  id: "1",
-                  imagePath: "assets/image/recette.jpg",
-                  title: "Crème glacé",
-                ),
-                CookBook(
-                  id: "2",
-                  imagePath: "assets/image/recette.jpg",
-                  title: "Sauce soja",
-                ),
-                CookBook(
-                  id: "3",
-                  imagePath: "assets/image/recette.jpg",
-                  title: "Pizza framboise",
-                ),
-                CookBook(
-                  id: "4",
-                  imagePath: "assets/image/recette.jpg",
-                  title: "Spagetti",
-                ),
-                CookBook(
-                  id: "5",
-                  imagePath: "assets/image/recette.jpg",
-                  title: "Fromage",
-                ),
+                // CookBook(
+                //   id: "1",
+                //   imagePath: "assets/image/recette1.jpg",
+                //   title: "Crème glacé",
+                // ),
+                // CookBook(
+                //   id: "2",
+                //   imagePath: "assets/image/recette2.jpg",
+                //   title: "Sauce soja",
+                // ),
+                // CookBook(
+                //   id: "3",
+                //   imagePath: "assets/image/recette3.jpg",
+                //   title: "Pizza framboise",
+                // ),
+                // CookBook(
+                //   id: "4",
+                //   imagePath: "assets/image/recette4.jpg",
+                //   title: "Spagetti",
+                // ),
+                // CookBook(
+                //   id: "5",
+                //   imagePath: "assets/image/recette5.jpg",
+                //   title: "Fromage",
+                // ),
               ];
               return GridView.builder(
                 padding: EdgeInsets.all(5),
@@ -128,19 +129,26 @@ class _MyCustomTabViewState extends State<MyCustomTabView> {
                 physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index){
-                  if(_selected){
                     return books[index];
-                  }
-                  return Card(
-                    child: ContentPlaceholder(
-                      height: 100,
-                      borderRadius: 0,
-                      context: context,
-                    ),
-                  );
                 },
               );
             }
+          ) : Column(
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width,
+                color: Colors.teal.withOpacity(0.5),
+                height: 40,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text("Vous n'avez pas de collection",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+              )
+            ]
           ),
         )
       ],

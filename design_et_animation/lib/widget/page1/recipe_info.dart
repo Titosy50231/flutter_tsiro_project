@@ -12,8 +12,9 @@ class RecipeInfo extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Pumpkin Soup with Garnet", 
-                  style: GoogleFonts.playfairDisplay(
-                      color: Colors.white,
+                  style: TextStyle(
+                    fontFamily: "PlayfairDisplay",
+                    color: Colors.white,
                     fontSize: 42,
                     fontWeight: FontWeight.w500
                   )

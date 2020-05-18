@@ -8,8 +8,7 @@ class Recipe {
   String description;
   List<String> ingredients;
   List<String> direction;
-  List<String> imagesPath;
-  String video;
+  String imagesPath;
   String totalTime;
   String preparationTime;
   String cookingTime;
@@ -26,7 +25,6 @@ class Recipe {
     this.time,
     this.imagesPath,
     this.level,
-    this.video,
     this.totalTime,
     this.preparationTime
   });

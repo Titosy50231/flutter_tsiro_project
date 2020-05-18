@@ -25,19 +25,21 @@ class AddRecipe extends StatelessWidget {
           )
         );
       },
-      child: Container(
-        margin: EdgeInsets.only(right: 8, top: 5),
-        color: Colors.grey[200],
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(Icons.add, color: Colors.teal,size: 35,),
-            Text("Ajouter une recette", 
-              style: TextStyle(
-                color: Colors.blueGrey
-              ),
-            )
-          ],
+      child: Padding(
+        padding: const EdgeInsets.only(right: 8, top: 5),
+        child: Container(
+          color: Colors.grey[200],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(Icons.add, color: Colors.teal,size: 35,),
+              Text("Ajouter une recette", 
+                style: TextStyle(
+                  color: Colors.blueGrey
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
